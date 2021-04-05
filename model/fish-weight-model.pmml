@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_4" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.4">
+	<Header>
+		<Application name="JPMML-SkLearn" version="1.6.15"/>
+		<Timestamp>2021-04-05T05:48:35Z</Timestamp>
+	</Header>
+	<MiningBuildTask>
+		<Extension>PMMLPipeline(steps=[('mapper', DataFrameMapper(drop_cols=[],
+                features=[(['Width'],
+                           [ContinuousDomain(),
+                            ExpressionTransformer(dtype=&lt;class 'numpy.float64'&gt;,
+                                                  expr='numpy.log(X[0])')])])),
+       ('model', LinearRegression())])</Extension>
+	</MiningBuildTask>
+	<DataDictionary>
+		<DataField name="Weight" optype="continuous" dataType="double"/>
+		<DataField name="Width" optype="continuous" dataType="double">
+			<Interval closure="closedClosed" leftMargin="1.0476" rightMargin="8.142"/>
+		</DataField>
+	</DataDictionary>
+	<TransformationDictionary/>
+	<RegressionModel functionName="regression" algorithmName="sklearn.linear_model._base.LinearRegression">
+		<MiningSchema>
+			<MiningField name="Weight" usageType="target"/>
+			<MiningField name="Width" missingValueTreatment="asIs"/>
+		</MiningSchema>
+		<ModelStats>
+			<UnivariateStats field="Width">
+				<Counts totalFreq="124" missingFreq="0" invalidFreq="0"/>
+				<NumericInfo minimum="1.0476" maximum="8.142" mean="4.3827225806451615" standardDeviation="1.6750289629098623" median="4.27705" interQuartileRange="2.2479749999999994"/>
+			</UnivariateStats>
+		</ModelStats>
+		<LocalTransformations>
+			<DerivedField name="eval(numpy.log(X[0]))" optype="continuous" dataType="double">
+				<Apply function="ln">
+					<FieldRef field="Width"/>
+				</Apply>
+			</DerivedField>
+		</LocalTransformations>
+		<RegressionTable intercept="1.5744784443032223">
+			<NumericPredictor name="eval(numpy.log(X[0]))" coefficient="2.7482911479383283"/>
+		</RegressionTable>
+	</RegressionModel>
+</PMML>
