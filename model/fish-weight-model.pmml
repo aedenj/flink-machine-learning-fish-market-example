@@ -1,33 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PMML xmlns="http://www.dmg.org/PMML-4_4" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.4">
 	<Header>
-		<Application name="JPMML-SkLearn" version="1.6.17"/>
-		<Timestamp>2021-04-12T00:04:05Z</Timestamp>
+		<Application name="JPMML-SkLearn" version="1.6.18"/>
+		<Timestamp>2021-06-05T16:56:39Z</Timestamp>
 	</Header>
 	<MiningBuildTask>
 		<Extension>PMMLPipeline(steps=[('mapper', DataFrameMapper(drop_cols=[],
-                features=[(['Width'],
+                features=[(['Length3'],
                            [ContinuousDomain(),
-                            FunctionTransformer(func=&lt;ufunc 'log'&gt;)])])),
+                            FunctionTransformer(func=&lt;ufunc 'log'&gt;)]),
+                          (['Species'], [OneHotEncoder(drop='first')])])),
        ('model', TransformedTargetRegressor(func=&lt;ufunc 'log'&gt;, inverse_func=&lt;ufunc 'exp'&gt;,
                            regressor=LinearRegression()))])</Extension>
 	</MiningBuildTask>
 	<DataDictionary>
 		<DataField name="Weight" optype="continuous" dataType="double"/>
-		<DataField name="Width" optype="continuous" dataType="double">
-			<Interval closure="closedClosed" leftMargin="1.0476" rightMargin="8.142"/>
+		<DataField name="Length3" optype="continuous" dataType="double">
+			<Interval closure="closedClosed" leftMargin="8.8" rightMargin="59.7"/>
+		</DataField>
+		<DataField name="Species" optype="categorical" dataType="string">
+			<Value value="Bream"/>
+			<Value value="Parkki"/>
+			<Value value="Perch"/>
+			<Value value="Pike"/>
+			<Value value="Roach"/>
+			<Value value="Smelt"/>
+			<Value value="Whitefish"/>
 		</DataField>
 	</DataDictionary>
 	<TransformationDictionary/>
 	<MiningModel functionName="regression" algorithmName="sklearn.compose._target.TransformedTargetRegressor">
 		<MiningSchema>
 			<MiningField name="Weight" usageType="target"/>
-			<MiningField name="Width" missingValueTreatment="asIs"/>
+			<MiningField name="Length3" missingValueTreatment="asIs"/>
+			<MiningField name="Species"/>
 		</MiningSchema>
 		<ModelStats>
-			<UnivariateStats field="Width">
+			<UnivariateStats field="Length3">
 				<Counts totalFreq="124" missingFreq="0" invalidFreq="0"/>
-				<NumericInfo minimum="1.0476" maximum="8.142" mean="4.3827225806451615" standardDeviation="1.6750289629098623" median="4.27705" interQuartileRange="2.2479749999999994"/>
+				<NumericInfo minimum="8.8" maximum="59.7" mean="30.85645161290322" standardDeviation="10.756822605687953" median="30.05" interQuartileRange="16.9"/>
 			</UnivariateStats>
 		</ModelStats>
 		<Segmentation multipleModelMethod="modelChain" missingPredictionTreatment="returnMissing">
@@ -35,7 +46,8 @@
 				<True/>
 				<RegressionModel functionName="regression" algorithmName="sklearn.linear_model._base.LinearRegression">
 					<MiningSchema>
-						<MiningField name="Width"/>
+						<MiningField name="Species"/>
+						<MiningField name="Length3"/>
 					</MiningSchema>
 					<Output>
 						<OutputField name="func(Weight)" optype="continuous" dataType="double" isFinalResult="false"/>
@@ -46,14 +58,20 @@
 						</OutputField>
 					</Output>
 					<LocalTransformations>
-						<DerivedField name="log(Width)" optype="continuous" dataType="double">
+						<DerivedField name="log(Length3)" optype="continuous" dataType="double">
 							<Apply function="ln">
-								<FieldRef field="Width"/>
+								<FieldRef field="Length3"/>
 							</Apply>
 						</DerivedField>
 					</LocalTransformations>
-					<RegressionTable intercept="1.5744784443032223">
-						<NumericPredictor name="log(Width)" coefficient="2.7482911479383283"/>
+					<RegressionTable intercept="-5.10444523283931">
+						<NumericPredictor name="log(Length3)" coefficient="3.1442535087946974"/>
+						<CategoricalPredictor name="Species" value="Parkki" coefficient="0.23382943163729394"/>
+						<CategoricalPredictor name="Species" value="Perch" coefficient="0.09575854576863957"/>
+						<CategoricalPredictor name="Species" value="Pike" coefficient="-0.6924597260534439"/>
+						<CategoricalPredictor name="Species" value="Roach" coefficient="-0.059611986411668864"/>
+						<CategoricalPredictor name="Species" value="Smelt" coefficient="-0.5871529719462067"/>
+						<CategoricalPredictor name="Species" value="Whitefish" coefficient="0.1821239278746103"/>
 					</RegressionTable>
 				</RegressionModel>
 			</Segment>
