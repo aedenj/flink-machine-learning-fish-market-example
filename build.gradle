@@ -78,7 +78,7 @@ task deleteTopics(type: Exec) {
 }
 
 task createTopics(type: Exec) {
-  commandLine "./scripts/create-topics.sh", "-b", "broker-1:19092", "fishes:2:1", "weight-predictions:2:1"
+  commandLine "./scripts/create-topics.sh", "-b", "broker-1:19092", "fishes:1:1", "weight-predictions:1:1"
 }
 
 task recreateTopics(type: GradleBuild) {
@@ -164,6 +164,7 @@ dependencies {
     flinkShadowJar group: 'org.apache.flink', name: "flink-connector-kafka_$scalaBinaryVersion", version:"$flinkVersion"
     flinkShadowJar group: 'com.typesafe', name: 'config', version: '1.4.0'
     flinkShadowJar group: 'joda-time', name: 'joda-time', version: '2.7'
+    flinkShadowJar group: 'org.jpmml', name: 'jpmml-evaluator', version: '1.5.15', ext: 'pom'
 
     compile "org.apache.logging.log4j:log4j-api:$log4jVersion"
     compile "org.apache.logging.log4j:log4j-core:$log4jVersion"
@@ -172,6 +173,7 @@ dependencies {
 
     compile group: 'org.apache.flink', name: "flink-connector-kafka_$scalaBinaryVersion", version: "$flinkVersion"
     compile group: 'org.apache.avro', name: 'avro', version: '1.10.0'
+    compile group: 'org.jpmml', name: 'jpmml-evaluator', version: '1.5.15', ext: 'pom'
 
     compile group: 'joda-time', name: 'joda-time', version: '2.7'
     compile group: 'com.typesafe', name: 'config', version: '1.4.0'

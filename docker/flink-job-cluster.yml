@@ -19,8 +19,8 @@ services:
     volumes:
       - ../build/libs:/opt/flink/usrlib
       - ../conf/flink:/opt/flink/conf
-      - flink-checkpoints-directory:/tmp/flink-checkpoints-directory
-      - /tmp/flink-savepoints-directory:/tmp/flink-savepoints-directory
+      - ../data/flink/checkpoints:/tmp/flink-checkpoints-directory
+      - ../data/flink/savepoints:/tmp/flink-savepoints-directory
     networks:
       - kafka-net
 
@@ -30,26 +30,12 @@ services:
       - jobmanager
     command: "taskmanager.sh start-foreground"
     environment:
+      JOB_MANAGER_RPC_ADDRESS: jobmanager
       JVM_ARGS: "-Dconfig.resource=application.development.conf"
     volumes:
       - ../build/libs:/opt/flink/usrlib
       - ../conf/flink:/opt/flink/conf
-      - flink-checkpoints-directory:/tmp/flink-checkpoints-directory
-      - /tmp/flink-savepoints-directory:/tmp/flink-savepoints-directory
-    networks:
-      - kafka-net
-
-  taskmanager-2:
-    image: flink:1.13.1-scala_2.11-java11
-    depends_on:
-      - jobmanager
-    command: "taskmanager.sh start-foreground"
-    environment:
-      JVM_ARGS: "-Dconfig.resource=application.development.conf"
-    volumes:
-      - ../build/libs:/opt/flink/usrlib
-      - ../conf/flink:/opt/flink/conf
-      - flink-checkpoints-directory:/tmp/flink-checkpoints-directory
-      - /tmp/flink-savepoints-directory:/tmp/flink-savepoints-directory
+      - ../data/flink/checkpoints:/tmp/flink-checkpoints-directory
+      - ../data/flink/savepoints:/tmp/flink-savepoints-directory
     networks:
       - kafka-net

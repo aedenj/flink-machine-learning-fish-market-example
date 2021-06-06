@@ -13,6 +13,6 @@ state.checkpoints.dir: file:///tmp/flink-checkpoints-directory
 state.savepoints.dir: file:///tmp/flink-savepoints-directory
 
 heartbeat.interval: 1000
-parallelism.default: 2
+parallelism.default: 1
 
 web.submit.enable: false

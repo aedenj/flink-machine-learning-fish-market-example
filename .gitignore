@@ -1,3 +1,19 @@
+#This Project
+data/
+
+
+# Vim
+*.swp
+*.swo
+
+# IntelliJ
+out/
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
+
 # Mac OsX
 .DS_Store
 
