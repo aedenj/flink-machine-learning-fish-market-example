@@ -9,7 +9,7 @@ volumes:
 
 services:
   jobmanager:
-    image: flink:1.11.1-scala_2.11-java11
+    image: flink:1.13.1-scala_2.11-java11
     hostname: jobmanager
     ports:
       - "8083:8083"
@@ -25,7 +25,7 @@ services:
       - kafka-net
 
   taskmanager-1:
-    image: flink:1.11.1-scala_2.11-java11
+    image: flink:1.13.1-scala_2.11-java11
     depends_on:
       - jobmanager
     command: "taskmanager.sh start-foreground"
@@ -40,7 +40,7 @@ services:
       - kafka-net
 
   taskmanager-2:
-    image: flink:1.11.1-scala_2.11-java11
+    image: flink:1.13.1-scala_2.11-java11
     depends_on:
       - jobmanager
     command: "taskmanager.sh start-foreground"

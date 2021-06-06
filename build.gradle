@@ -26,17 +26,17 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.2.0'
 
     // http://xvik.github.io/gradle-quality-plugin/4.3.0/getting-started/
-    id 'ru.vyarus.quality' version '4.3.0' // no config out of the box
+    id 'ru.vyarus.quality' version '4.6.0' // no config out of the box
 
-    // https://github.com/davidmc24/gradle-avro-plugin/tree/0.16.0
-    id "com.commercehub.gradle.plugin.avro" version "0.16.0"
+    // https://github.com/davidmc24/gradle-avro-plugin
+    id 'com.github.davidmc24.gradle.plugin.avro' version '1.0.0'
 }
 
 
 // artifact properties
-group = 'com.flink.ml.streaming'
+group = 'com.examples.flinkml.streaming'
 version = '1.0'
-mainClassName = 'com.flink.ml.streaming.StreamingJob'
+mainClassName = 'com.examples.flinkml.StreamingJob'
 description = """Flink PMML Example"""
 
 application {
@@ -50,7 +50,7 @@ application {
 ext {
     javaVersion = '1.11'
     junitVersion = '5.6.2'
-    flinkVersion = '1.11.1'
+    flinkVersion = '1.13.1'
     scalaBinaryVersion = '2.11'
     slf4jVersion = '1.7.15'
     log4jVersion = '2.12.1'
@@ -162,9 +162,6 @@ dependencies {
     // connectors. These must be in the flinkShadowJar configuration!
     // --------------------------------------------------------------
     flinkShadowJar group: 'org.apache.flink', name: "flink-connector-kafka_$scalaBinaryVersion", version:"$flinkVersion"
-    flinkShadowJar group: 'org.apache.flink', name: 'flink-avro-confluent-registry', version: "$flinkVersion"
-    flinkShadowJar group: 'org.apache.flink', name: 'flink-formats', version: "$flinkVersion", ext: 'pom'
-    flinkShadowJar group: 'org.apache.flink', name: "flink-cep_$scalaBinaryVersion", version: "$flinkVersion"
     flinkShadowJar group: 'com.typesafe', name: 'config', version: '1.4.0'
     flinkShadowJar group: 'joda-time', name: 'joda-time', version: '2.7'
 
@@ -174,10 +171,7 @@ dependencies {
     compile "org.slf4j:slf4j-log4j12:${slf4jVersion}"
 
     compile group: 'org.apache.flink', name: "flink-connector-kafka_$scalaBinaryVersion", version: "$flinkVersion"
-    compile group: 'org.apache.avro', name: 'avro', version: '1.8.2'
-    compile group: 'org.apache.flink', name: 'flink-avro-confluent-registry', version: "$flinkVersion"
-    compile group: 'org.apache.flink', name: 'flink-formats', version: "$flinkVersion", ext: 'pom'
-    compile group: 'org.apache.flink', name: "flink-cep_$scalaBinaryVersion", version: "$flinkVersion"
+    compile group: 'org.apache.avro', name: 'avro', version: '1.10.0'
 
     compile group: 'joda-time', name: 'joda-time', version: '2.7'
     compile group: 'com.typesafe', name: 'config', version: '1.4.0'

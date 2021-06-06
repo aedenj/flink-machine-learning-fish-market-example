@@ -51,3 +51,5 @@ I find it helpful to have an alias for running Jupyter under docker. One possibi
 ```bash
 alias jupyterd='f(){ docker run --rm -p $1:8888 -e JUPYTER_ENABLE_LAB=yes -e GRANT_SUDO=yes --user root -v ~/.kaggle:/home/jovyan/.kaggle -v "$PWD":/home/jovyan/work jupyter/pyspark-notebook; unset -f f; }; f'
 ```
+
+### The Job
