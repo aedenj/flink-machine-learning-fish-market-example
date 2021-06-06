@@ -26,7 +26,7 @@ cd ~/projects/flink-ml-example;
 
 ### The Model
 
-The linear regression model in the notebook is built using the [Fish Market dataset on Kaggle](https://www.kaggle.com/aungpyaeap/fish-market)
+The linear regression model in the Jupyter notebook is built using the [Fish Market dataset on Kaggle](https://www.kaggle.com/aungpyaeap/fish-market)
 If you'd like to step through the notebook yourself run,
 
 ```bash
