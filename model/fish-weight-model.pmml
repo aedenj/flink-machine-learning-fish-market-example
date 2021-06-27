@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PMML xmlns="http://www.dmg.org/PMML-4_4" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.4">
 	<Header>
-		<Application name="JPMML-SkLearn" version="1.6.18"/>
-		<Timestamp>2021-06-05T16:56:39Z</Timestamp>
+		<Application name="JPMML-SkLearn" version="1.6.20"/>
+		<Timestamp>2021-06-27T19:42:38Z</Timestamp>
 	</Header>
 	<MiningBuildTask>
 		<Extension>PMMLPipeline(steps=[('mapper', DataFrameMapper(drop_cols=[],
@@ -28,7 +28,6 @@
 			<Value value="Whitefish"/>
 		</DataField>
 	</DataDictionary>
-	<TransformationDictionary/>
 	<MiningModel functionName="regression" algorithmName="sklearn.compose._target.TransformedTargetRegressor">
 		<MiningSchema>
 			<MiningField name="Weight" usageType="target"/>
