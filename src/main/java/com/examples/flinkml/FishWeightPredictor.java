@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * Our model for fish weight prediction
  **/
 public class FishWeightPredictor implements MapFunction<FishObservation, WeightPrediction> {
     private final Evaluator evaluator;

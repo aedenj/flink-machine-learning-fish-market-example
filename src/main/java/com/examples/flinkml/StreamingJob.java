@@ -1,5 +1,5 @@
 /**
- * Something profound.
+ * A toy example of how to use a PMML model in Flink
  */
 package com.examples.flinkml;
 
@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 /**
- * Starting point for a Flink streaming job using the DataStream API.
+ * A toy example of how to use a PMML model in Flink
  */
 public final class StreamingJob {
     private static final Gson GSON =
