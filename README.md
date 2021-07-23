@@ -54,3 +54,19 @@ alias jupyterd='f(){ docker run --rm -p $1:8888 -e JUPYTER_ENABLE_LAB=yes -e GRA
 ```
 
 ### The Job
+
+The job reads from a topic of observations named `fishes` and writes to a topic named `weight-predictions`.
+The json messages in the fishes topic contain the predictors/fields, 
+
+* Length - Representing the cross length in cm 
+* Species
+
+In order to see the job in action run,
+
+1. `./gradlew createtopics`
+1. `./gradlew shadowJar run`
+1. In a new terminal start a Kafka producer by running `./scripts/start-kafka-producer.sh`
+1. You'll see the prompt `>`. Enter the message `1:{length: 41.3, species:"Perch"}`
+1. Navigate to the [Kafka Topics UI](http://localhost:9002/#/) and inspect both the `fishes` and `weight-predictions` topics.
+
+You should see the message `{ weight: 804.8438505999843, length: 41.3, species: Perch }` in predictions topic.
