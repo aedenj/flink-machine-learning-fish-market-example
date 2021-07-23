@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PMML xmlns="http://www.dmg.org/PMML-4_4" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.4">
 	<Header>
-		<Application name="JPMML-SkLearn" version="1.6.20"/>
-		<Timestamp>2021-06-27T19:42:38Z</Timestamp>
+		<Application name="JPMML-SkLearn" version="1.6.25"/>
+		<Timestamp>2021-07-23T20:58:04Z</Timestamp>
 	</Header>
 	<MiningBuildTask>
-		<Extension>PMMLPipeline(steps=[('mapper', DataFrameMapper(drop_cols=[],
+		<Extension name="repr">PMMLPipeline(steps=[('mapper', DataFrameMapper(drop_cols=[],
                 features=[(['Length3'],
                            [ContinuousDomain(),
                             FunctionTransformer(func=&lt;ufunc 'log'&gt;)]),
