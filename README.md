@@ -63,6 +63,7 @@ The json messages in the fishes topic contain the predictors/fields,
 
 In order to see the job in action run,
 
+1. `./gradlew kafkaup`
 1. `./gradlew createtopics`
 1. `./gradlew shadowJar run`
 1. In a new terminal start a Kafka producer by running `./scripts/start-kafka-producer.sh`
